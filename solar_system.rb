@@ -24,12 +24,10 @@ class System
     end
     @total_mass
   end
-
 end
-#**********----END OF SYSTEM CLASS----***********
 
 
-
+#**********----START OF BODY CLASS----***********
 class Body < System
 
 # Each body will need a name and a mass
@@ -38,26 +36,44 @@ class Body < System
     @mass = mass
   end
 
+  # READER
+  def name
+    @name
+  end
+
+  def mass
+    @mass
+  end
 end
-#**********----END OF BODY CLASS----***********
 
 
+#**********----START OF PLANET CLASS----***********
+class Planet < Body
 
-class Planet < System
-
+  def initialize(name, mass, day, year)
+    super(name, mass)
+    @day = day
+    @year = year
+  end
 end
-#**********----END OF PLANET CLASS----***********
 
 
+#**********----START OF STAR CLASS----***********
+class Star < Body
 
-class Star < System
-
+  def initialize(name, mass, type)
+    super(name, mass)
+    @type = type
+  end
 end
-#**********----END OF STAR CLASS----***********
 
 
+#**********----START OF MOON CLASS----***********
+class Moon < Body
 
-class Moon < System
-
+  def initialize(name, mass, month, planet)
+    super(name, mass)
+    @month = month
+    @planet = []
+  end
 end
-#**********----END OF MOON CLASS----***********
