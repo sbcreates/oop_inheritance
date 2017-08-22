@@ -74,6 +74,10 @@ class Moon < Body
   def initialize(name, mass, month, planet)
     super(name, mass)
     @month = month
-    @planet = []
+    @planet = planet
   end
 end
+
+sun = Star.new("Sun", "1.989 × 10^30 kg" , "G2V")
+earth = Planet.new("Earth", "5.972 × 10^24 kg", "24 hours", "364 days")
+earth_moon = Moon.new("Moon", "7.35 x 10^22 kg", "27 days", "Earth")
