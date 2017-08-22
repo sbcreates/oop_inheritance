@@ -1,28 +1,31 @@
+require 'pry'
+
 class System
+
+  @@bodies = []
+  @@total_mass = 0
 
 # starting out we will have no bodies in our system and total mass is 0
   def initialize
-    @bodies = []
-    @total_mass = 0
+
   end
 
 # reader
-  def bodies
-    @bodies
+  def self.bodies
+    @@bodies
   end
 
 # instance method which will add a celestial body to the list
-  def add
-    @bodies << new_body
-    @bodies
+  def self.add(new_body)
+    @@bodies << new_body
   end
 
 # will add up the mass of all bodies in @bodies and return it.
-  def total_mass
-    @bodies.each do |body|
-      @total_mass += body.mass
+  def self.total_mass
+    @@bodies.each do |body|
+      @@total_mass += body.mass.to_i
     end
-    @total_mass
+    @@total_mass
   end
 end
 
@@ -55,6 +58,11 @@ class Planet < Body
     @day = day
     @year = year
   end
+
+  def self.create(name, mass, day, year)
+    new_planet = Planet.new(name, mass, day, year)
+    @@bodies << new_planet
+  end
 end
 
 
@@ -65,6 +73,12 @@ class Star < Body
     super(name, mass)
     @type = type
   end
+# binding.pry
+  def self.create(name, mass, type)
+    new_star = Star.new(name, mass, type)
+    @@bodies << new_star
+  end
+
 end
 
 
@@ -76,8 +90,22 @@ class Moon < Body
     @month = month
     @planet = planet
   end
+
+  def self.create(name, mass, month, planet)
+    new_moon = Moon.new(name, mass, month, planet)
+    @@bodies << new_moon
+  end
+
 end
 
-sun = Star.new("Sun", "1.989 × 10^30 kg" , "G2V")
-earth = Planet.new("Earth", "5.972 × 10^24 kg", "24 hours", "364 days")
-earth_moon = Moon.new("Moon", "7.35 x 10^22 kg", "27 days", "Earth")
+sun = Star.create("Sun", "198900000000000000000000000000000" , "G2V")
+puts sun.inspect
+
+earth = Planet.create("Earth", "597200000000000000000000000", "24 hours", "364 days")
+puts earth.inspect
+
+earth_moon = Moon.create("Moon", "73500000000000000000000", "27 days", "Earth")
+puts earth_moon.inspect
+
+puts System.bodies.inspect
+puts System.total_mass
