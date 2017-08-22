@@ -26,3 +26,38 @@ class System
   end
 
 end
+#**********----END OF SYSTEM CLASS----***********
+
+
+
+class Body < System
+
+# Each body will need a name and a mass
+  def initialize(name, mass)
+    @name = name
+    @mass = mass
+  end
+
+end
+#**********----END OF BODY CLASS----***********
+
+
+
+class Planet < System
+
+end
+#**********----END OF PLANET CLASS----***********
+
+
+
+class Star < System
+
+end
+#**********----END OF STAR CLASS----***********
+
+
+
+class Moon < System
+
+end
+#**********----END OF MOON CLASS----***********
